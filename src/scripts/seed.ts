@@ -1,11 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
-import { User } from '../src/models/User.js';
-import { Article } from '../src/models/Article.js';
-import { Ticket } from '../src/models/Ticket.js';
-import { Config } from '../src/models/Config.js';
-import { hash } from '../src/lib/hash.js';
+import { User } from '../models/User.js';
+import { Article } from '../models/Article.js';
+import { Ticket } from '../models/Ticket.js';
+import { Config } from '../models/Config.js';
+import { hash } from '../lib/hash.js';
 
 
 async function run() {
