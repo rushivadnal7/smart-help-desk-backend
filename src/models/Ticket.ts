@@ -1,7 +1,6 @@
 import { Schema, model, Types, Document } from "mongoose";
 
-// Define the TypeScript interface for a Ticket document
-export interface ITicket extends Document {
+export interface ITicket {
   title: string;
   description: string;
   category: "billing" | "tech" | "shipping" | "other";
@@ -9,12 +8,12 @@ export interface ITicket extends Document {
   createdBy: Types.ObjectId;
   assignee?: Types.ObjectId | null;
   agentSuggestionId?: Types.ObjectId | null;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
-// Define the schema
-const ticketSchema = new Schema<ITicket>(
+export type TicketDocument = Document<unknown, {}, ITicket> &
+  ITicket & { _id: Types.ObjectId };
+
+const ticketSchema = new Schema<TicketDocument>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -37,5 +36,4 @@ const ticketSchema = new Schema<ITicket>(
   { timestamps: true }
 );
 
-// Create and export the model
-export const Ticket = model<ITicket>("Ticket", ticketSchema);
+export const Ticket = model<TicketDocument>("Ticket", ticketSchema);
